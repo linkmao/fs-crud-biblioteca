@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV ==='development'){
+    require('dotenv').config()   // Con esta linea se logra que se reconozca el .env
+}
+
 const { json } = require('express')
 const express = require('express')
 const morgan = require('morgan')
@@ -9,7 +13,7 @@ const books= require('./routes/books')
 const app=express()
 require('./database')
 //Settings
-app.set('port',3000)
+app.set('port', process.env.PORT ||3000) // Para desplegar en Heroku, nos ofrece un PORT como variable de entorno, por eso se usa acá
 
 // Midlewares
 app.use(morgan('dev'))

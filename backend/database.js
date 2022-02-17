@@ -1,5 +1,7 @@
-const mongoose = require ('mongoose')
-mongoose.connect('mongodb://localhost/books-db',{
+const mongoose = require ('mongoose') 
+
+
+mongoose.connect(process.env.MONGODB_URI,{
     useNewUrlParser:true
 })
     .then(db=>console.log('Base de datos conectada'))
