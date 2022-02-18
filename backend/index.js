@@ -7,7 +7,7 @@ const express = require('express')
 const morgan = require('morgan')
 const multer= require('multer')
 const path = require('path')
-
+const cors = require ('cors')
 const books= require('./routes/books')
 //Inicializacion
 const app=express()
@@ -26,6 +26,7 @@ const storage = multer.diskStorage({
 app.use(multer({storage}).single('image'))   // single es para que suba solo una imagen, e 'image' es el nombre del input al que se asociará la subida del archivo
 app.use(express.urlencoded({extended:false})) // permite que las peticiones solo reciba json
 app.use(json())
+app.use(cors())
 
 // Rutas
 app.use('/api/books',books)

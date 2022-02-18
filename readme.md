@@ -3,7 +3,7 @@ Desarrollo **Full Stack** (fs), tanto backend como frontend, de una aplicación 
 Desarrollo tomado de una lista de videos, donde el video número 1 es [este video de Fazt][video de fazt]
 ***
 
-## Tecnologías usadas
+## Tecnologías usadas para el backend
 - 
 - express
 - morgan (notificaiones en consola de las peticions http realizadas)
@@ -11,8 +11,42 @@ Desarrollo tomado de una lista de videos, donde el video número 1 es [este vide
 - multer (Permite la gestin de los archivos que se suben a un servidor, en este caso uan imagen)
 - dotenv (para crear variables de entorno)
 - cross-env (permite definir en que entorno de produccion estamos????)
-- cors (permite la gestion de los dos servidores ???????)
+- cors (permite que los dos servidores se comuniquen)
 - fs-extra (permite trabajar con archivos del sistema)
+
+## Tecnologías para el frontend
+- webpack (Libreria de frontend, que empaqueta todo el código en algo mas reducido (esto es el concepto de bundle) empaqueta tanto el app.js a bundle.js como el index.html, llevandolos a la carpeta del backend)
+- webpack-cli (cliente cli de webpack)
+- html-webpack-plugin (permite configurar la manera como se va a guardar e index.html en el backend, normalmente comprimido)
+- css-loader (cargar archivos de cc en js)
+- style-loader
+- mini-css-extract-pluguin
+- webpack-dev-server  (servidor frontend)
+- timeago.js
+
+Todas estas librerias se intalan como dependecias para desarrollo osea que va con la opción
+$ npm i [libreria] -D
+
+La ejecucion del webpack, para que tome el app.js y html.index del frontend y lo convierta respectivamente
+en el bundle.js e index.html del backend se realiza con el comando. (previa cinfiguracin de webpack.config.js)
+$ npx webpack
+
+## webpack
+El punto fuerte y difernete de este desarrollo es el de webpack, el cual lo entiendo como la manera de tomar los archivos, html, js y css que se crea en el frontend, para llevarlos a la carpeta del backend y que estos sean interpretados por el servidor donde se vaya a desplegar.
+Esto se logra a traves de dos elementos
+1. La configuracion del archivo webpack.config.js
+2. La ejecucion de webpack con `$ npx webpack`
+
+Cuando se realiza esto, el codigo html se comprime y se instala en el backend, el js del frontend se conveirte en el bundle.js y automticamete el html reconocerá el bundle.js
+Ahora con el css pasa lo mismo, el css se incorpora en el bundle.js, sin embargo si lo que se desea en produccion es que el archivo css quedé fuera del bundle.js se debe especificar primero en que entorno de progrmacación se stá (produccion o desarrollo) y su es produccion usar entonces el plugin mini-css-extract-plugin, para que lo deje por fuera.
+
+Otro elemento interesante es que en desarrollo se puede crear un servidor para verificar el avance del frontend, para ello se usa `webpack.dev-server', montando así un servidor solo para verificar los cambios en el desarrollo forntend. Cuando ese desarrollo haya finalizaddo se debe entonces hacer el build para que lleve la info a la carpeta public del backend
+
+
+
+
+
+
 
 
 
