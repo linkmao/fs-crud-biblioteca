@@ -1,5 +1,10 @@
 require('./styles/styles.css')
-const BookServices= require('./services/BookServices')
+const UI = require('./UI')
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    const ui= new UI()
+    ui.renderBook()
+})
 
 document.getElementById('book-form')
 .addEventListener('submit', e=>{
@@ -15,8 +20,7 @@ document.getElementById('book-form')
     formData.append('author',author)
     formData.append('isbn',isbn)
     formData.append('image',image[0])
-
-    const servicios= new BookServices()
-    console.log(formData)
-    servicios.postBooks(formData)
+    const ui = new UI()
+    ui.addNewBook(formData)
+    
 })
