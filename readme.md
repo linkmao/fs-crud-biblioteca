@@ -6,13 +6,13 @@ Desarrollo tomado de una lista de videos, donde el video número 1 es [este vide
 ## Tecnologías usadas para el backend
 - 
 - express
-- morgan (notificaiones en consola de las peticions http realizadas)
+- morgan (notificaciones en consola de las peticiones http realizadas, se usa como midleware de express)
 - mongoose  (adaptador para la bd mogoose)
-- multer (Permite la gestin de los archivos que se suben a un servidor, en este caso uan imagen)
+- multer (Permite la gestión de los archivos que se suben a un servidor, en este caso una imagen)
 - dotenv (para crear variables de entorno)
 - cross-env (permite definir en que entorno de produccion estamos????)
 - cors (permite que los dos servidores se comuniquen)
-- fs-extra (permite trabajar con archivos del sistema)
+- fs-extra (permite trabajar con archivos del sistema, copiar, leer, borrar archivos etc)
 
 ## Tecnologías para el frontend
 - webpack (Libreria de frontend, que empaqueta todo el código en algo mas reducido (esto es el concepto de bundle) empaqueta tanto el app.js a bundle.js como el index.html, llevandolos a la carpeta del backend)
@@ -24,15 +24,15 @@ Desarrollo tomado de una lista de videos, donde el video número 1 es [este vide
 - webpack-dev-server  (servidor frontend)
 - timeago.js
 
-Todas estas librerias se intalan como dependecias para desarrollo osea que va con la opción
+Todas estas librerias se instalan como dependecias para desarrollo osea que va con la opción
 $ npm i [libreria] -D
 
 La ejecucion del webpack, para que tome el app.js y html.index del frontend y lo convierta respectivamente
-en el bundle.js e index.html del backend se realiza con el comando. (previa cinfiguracin de webpack.config.js)
+en el bundle.js e index.html del backend se realiza con el comando. (previa configuración de webpack.config.js)
 $ npx webpack
 
 ## webpack
-El punto fuerte y difernete de este desarrollo es el de webpack, el cual lo entiendo como la manera de tomar los archivos, html, js y css que se crea en el frontend, para llevarlos a la carpeta del backend y que estos sean interpretados por el servidor donde se vaya a desplegar.
+El punto fuerte y difernete de este desarrollo es el de webpack, el cual lo entiendo como la manera de tomar los archivos, html, js y css que se crea en el frontend, para llevarlos a la carpeta del backend y que estos sean interpretados por el servidor donde se vaya a desplegar. Explicado con mas detalle, la carpeta frontend es solo de desarrollo es decir es el lugar donde está todo el código de desarrollo del frontend, cuando este se considera que ya está listo, entonces con webpack se lleva a la carpeta public del backend de tal manera que cuando el usuario tipea la url raiz (en este caso localhost:3000) entonces se cargará el frontend que web pack ha compilado en la carpeta public
 Esto se logra a traves de dos elementos
 1. La configuracion del archivo webpack.config.js
 2. La ejecucion de webpack con `$ npx webpack`
@@ -41,15 +41,6 @@ Cuando se realiza esto, el codigo html se comprime y se instala en el backend, e
 Ahora con el css pasa lo mismo, el css se incorpora en el bundle.js, sin embargo si lo que se desea en produccion es que el archivo css quedé fuera del bundle.js se debe especificar primero en que entorno de progrmacación se stá (produccion o desarrollo) y su es produccion usar entonces el plugin mini-css-extract-plugin, para que lo deje por fuera.
 
 Otro elemento interesante es que en desarrollo se puede crear un servidor para verificar el avance del frontend, para ello se usa `webpack.dev-server', montando así un servidor solo para verificar los cambios en el desarrollo forntend. Cuando ese desarrollo haya finalizaddo se debe entonces hacer el build para que lleve la info a la carpeta public del backend
-
-
-
-
-
-
-
-
-
 
 
 - helmet (caracteristicas de seguridad para evitar que el servidor de info adicional **no se usó**)
