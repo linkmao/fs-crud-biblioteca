@@ -22,5 +22,16 @@ document.getElementById('book-form')
     formData.append('image',image[0])
     const ui = new UI()
     ui.addNewBook(formData)
+    ui.renderMessage('New book add', 'success', 3000)
     
 })
+
+document.getElementById('books-cards').addEventListener('click', e=>{
+    if (e.target.classList.contains('delete')){
+     const ui=new UI()   
+     ui.deleteBook(e.target.getAttribute('_id'))
+     ui.renderMessage('book delete', 'danger', 3000)
+    }
+    e.preventDefault()
+})
+

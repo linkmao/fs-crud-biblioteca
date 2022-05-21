@@ -20,7 +20,7 @@ class UI {
                         <div class= "card-block px-2">
                             <h4 class="card-title">${book.title}</h4>
                             <p class= "card-text">${book.author}</p>
-                            <a  href="#" class= "btn btn-danger delete _id="${book._id}">X</a>
+                            <a  href="#" class= "btn btn-danger delete" _id=${book._id}>X</a>
                         </div>
                     </div>
                 </div>
@@ -43,12 +43,23 @@ class UI {
      document.getElementById('book-form').reset()   
     }
 
-    renderMessage(){
+    renderMessage(message, colorMessage, secondsRemove){
+        const div = document.createElement('div')
+        div.className= `alert alert-${colorMessage} message`
+        div.appendChild(document.createTextNode(message))
+        const container = document.querySelector('.col-md-4')
+        const bookForm = document.querySelector('#book-form')
+
+        container.insertBefore(div,bookForm)
+        setTimeout(()=>{
+            document.querySelector('.message').remove()
+        }, secondsRemove)
 
     }
 
-    deleteBook(){
-
+    async deleteBook(bookId){
+        await servicios.deleteBook(bookId)
+        this.renderBook()
     }
 
 }
