@@ -65,7 +65,8 @@ Para este item se relaciona los siguinetes fragmentos de codigo de package.json
 "dev": "cross-env NODE_ENV=development nodemon backend/index.js --ignore frontend",
 "start": "cross-env NODE_ENV=production node backend/index.js",
 "build": "cross-env NODE_ENV=production webpack",
-"dev-server": "cross-env NODE_ENV=development webpack-dev-server"
+"dev-server": "cross-env NODE_ENV=development webpack-dev-server",
+"postinstall": "npm run build",
 ```
 
 Los scripts se ejecutan por ejemplo
@@ -75,6 +76,13 @@ Los scripts se ejecutan por ejemplo
 El fragmento de código `cross-env NODE_ENV=development` lo que hace es especificar al sistema como se está corriendo (si en desarrollo  o producción), pues a veces es necesario hacer esa distinción, para acceder al tipo de ejecucion se usa 
  process.env.NODE_ENV ==='development'
  Esto lo que hace es preguntarse su la ejecución está o no en desarrollo
+
+Cuando se sube el código a producción, por ejemplo a heroku este servicio automaticamete ejecuta en primera instancia
+`npm installl`e instala los node_modules
+luego si encuentra `postinstall` en el package.json lo ejecuta, en nuestro caso lo tenemos para que ejecute npm run bulid y genere la carpeta public dentro de backend (la que contiene el frontend)
+finalmente heroku ejecuta 
+`npm start`
+
 
 explicacion de los script
 dev: para la ejecucion en desarrollo del backend
